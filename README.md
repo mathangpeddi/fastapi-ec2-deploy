@@ -133,3 +133,26 @@ docker ps
 2. Access API in Browser
 
 📌 Open: http://your-ec2-public-ip/docs
+
+**API Documentation using Swagger/OpenAPI**
+Swagger UI provides an interactive interface to test API endpoints.
+FastAPI automatically generates OpenAPI documentation at /docs.
+Redoc is another built-in UI for API documentation at /redoc.
+Customization: You can modify title, description, and version in FastAPI using:
+python
+Copy
+Edit
+app = FastAPI(title="My API", description="API for my project", version="1.0")
+Schema Definitions: FastAPI uses Pydantic models to define request/response data.
+Try It Out: Developers can directly send requests and receive responses via Swagger UI.
+
+**CI/CD Pipeline Configuration**
+Continuous Integration (CI): Automates testing and validation of code changes before deployment.
+Continuous Deployment (CD): Ensures updated code is automatically deployed to the server after passing tests.
+GitHub Actions is used to set up CI/CD in this project.
+Workflow Steps:
+Trigger: Runs on push/merge to the main branch.
+Build & Test: Installs dependencies, runs tests using Pytest.
+Docker Build & Push: Builds a Docker image and pushes it to Docker Hub.
+Deploy on EC2: SSH into EC2, pull the latest Docker image, and restart the container.
+Secrets Management: Uses GitHub Secrets for secure authentication (EC2 SSH Key, Docker credentials).
